@@ -1,3 +1,8 @@
+
+#Thread-shed project
+
+
+#order of transaction: customer name; cost; type of thread(color); date of sale
 daily_sales = \
 """Edith Mcbride   ;,;$1.21   ;,;   white ;,; 
 09/15/17   ,Herbert Tran   ;,;   $7.29;,; 
@@ -107,3 +112,27 @@ green&white;,;09/15/17,   Gail Phelps   ;,;$30.52
 
 #------------------------------------------------
 # Start coding below!
+
+
+
+daily_sales_replaced = daily_sales.replace(';,;', '-',)
+
+
+daily_transactions = daily_sales_replaced.split(',')
+#print(daily_transactions)
+
+
+daily_transactions_split = []
+
+for i in daily_transactions:
+    daily_transactions_split.append(i.split('-'))
+#print(daily_transactions_split)
+
+transactions_clean = []
+for i in daily_transactions_split:
+    tct = []
+    for ei in i:
+        tct.append(ei.split())
+    transactions_clean.append(tct)
+
+print(transactions_clean)

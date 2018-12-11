@@ -126,13 +126,34 @@ daily_transactions_split = []
 
 for i in daily_transactions:
     daily_transactions_split.append(i.split('-'))
-#print(daily_transactions_split)
+print(daily_transactions_split)
+
 
 transactions_clean = []
 for i in daily_transactions_split:
-    tct = []
+    ttc = []
     for ei in i:
-        tct.append(ei.split())
-    transactions_clean.append(tct)
+        ttc.append(ei.strip())
+    transactions_clean.append(ttc)
+
 
 print(transactions_clean)
+
+
+customer = []
+sales = []
+thread_sold = []
+
+for t in transactions_clean:
+    customer.append(t[0])
+    sales.append(t[1])
+    thread_sold.append(t[2])
+
+print('/n')
+print(customer, sales, thread_sold)
+
+total_sales = 0
+for i in sales:
+    total_sales += float(i.strip('$'))
+
+print(total_sales)

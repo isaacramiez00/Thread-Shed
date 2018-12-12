@@ -114,19 +114,14 @@ green&white;,;09/15/17,   Gail Phelps   ;,;$30.52
 # Start coding below!
 
 
-
 daily_sales_replaced = daily_sales.replace(';,;', '-',)
 
-
 daily_transactions = daily_sales_replaced.split(',')
-#print(daily_transactions)
 
 
 daily_transactions_split = []
-
 for i in daily_transactions:
     daily_transactions_split.append(i.split('-'))
-print(daily_transactions_split)
 
 
 transactions_clean = []
@@ -137,23 +132,48 @@ for i in daily_transactions_split:
     transactions_clean.append(ttc)
 
 
-print(transactions_clean)
+#print(transactions_clean)
 
 
 customer = []
 sales = []
 thread_sold = []
-
 for t in transactions_clean:
     customer.append(t[0])
     sales.append(t[1])
     thread_sold.append(t[2])
 
-print('/n')
-print(customer, sales, thread_sold)
 
 total_sales = 0
 for i in sales:
     total_sales += float(i.strip('$'))
 
-print(total_sales)
+
+thread_sold_split = []
+for sale in thread_sold:
+    for color in sale.split('&'):
+        thread_sold_split.append(color)
+print(thread_sold_split)
+
+
+#returns sp col sold from the thread_sold_split list
+def color_count(color):
+    cc =[]
+    for col in thread_sold_split:
+        if col == color:
+            cc.append(col)
+    return len(cc)
+
+#types of col from thread_sold_list
+colors = ['red', 'yellow', 'green', 'white', 'black', 'blue', 'purple']
+
+
+#create this sentence:
+#Thread Shed sold " + str(color_count(color)) + " threads of {color} thread today.".format(color=colors)
+
+for each_color in colors:
+    print(
+        'Thread Shed sold {count} threads of {color_type} thread today'
+        .format(count = color_count(each_color), color_type = each_color)
+    )
+    
